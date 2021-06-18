@@ -6,6 +6,8 @@
     --color-dark-mint: #a9d8d3;
     --color-mint: #d4e8e2;
     --color-light-grey: #7c7979;
+    --color-dark-grey: darkgrey;
+    --color-blue:#afeeee; 
     /* Font Size */
     --font-large: 48px;
     --font-medium:28px;
@@ -18,6 +20,8 @@
     --weight-regular:400;
     /* Size */
     --size-border-radius: 4px;
+    /* Animation Duration */
+    --animation-duration: 300ms ;
 }
 
 /* Universal Tags */
@@ -138,4 +142,73 @@ p{
     border:2px solid var(--color-light-grey);
     border-radius: var(--size-border-radius);
     color: var(--color-light-grey);
+}
+
+/* Section common */
+.section{
+    padding:50px;
+    text-align:center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* About */
+.about__majors{
+    display: flex;
+    justify-content: space-between;
+    margin: 80px 0;
+}
+
+.major__icon{
+    width:170px;
+    height: 170px;
+    line-height: 170px;
+    font-size: 70px;
+    margin: auto;
+    border: 5px solid var(--color-mint);
+    border-radius: 50%;
+    color: var(--color-dark-mint);
+}
+
+.major__icon i{
+    transition: all var(--animation-duration) ease;
+}
+
+.major__icon:hover i{
+    color: var(--color-blue);
+    transform : rotate(-30deg) scale(1.2);
+}
+
+.major__title{
+    margin: 16px 0;
+    font-size: var(--font-medium);
+    color:var(--color-black);
+}
+
+.major__description{
+    font-size: var(--font-small);
+    color:var(--color-dark-grey);
+}
+
+.job{
+    display:flex;
+    align-items: center;
+}
+
+.job__description{
+    margin: 0 16px;
+    text-align: left;
+}
+
+.job__name,
+.job__period{
+    color: var(--color-dark-grey);
+}
+
+.job__name{
+    font-size:var(--font-small);
+}
+
+.job__period{
+    font-size:var(--font-micro);
 }
