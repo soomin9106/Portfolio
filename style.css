@@ -257,7 +257,7 @@ p{
 
 .skill__value{
     height: 3px;
-    background-color: var(--color-pink);
+    background-color: var(--color-blue);
 }
 
 
@@ -291,7 +291,7 @@ p{
 }
 
 .category__count{
-    background-color: var(--color-pink);
+    background-color: var(--color-blue);
     border-radius: 50%;
     color:var(--color-white);
     width: 20px;
