@@ -1,4 +1,9 @@
 'use strict'
+//methods
+function scrollInto(selector){
+    const scrollTo=document.querySelector(selector);
+    scrollTo.scrollIntoView({behavior: "smooth"});
+}
 
 //Make navbar transparent when it is on the top
 const navbar=document.querySelector('#navbar');
@@ -18,16 +23,15 @@ navbarMenu.addEventListener('click',(event)=>{
     const link=target.dataset.link;
     if(link==null){
         return;
-    }
-
-   scrollIntoView(link);
+    } 
+    scrollInto(link);
 });
 
 
 //Handle scrolling when tapping 'Contact Me' button on home
 const homeContact=document.querySelector('.home__contact');
-homeContact.addEventListener('click',()=>{
-    scrollIntoView('#contact');
+homeContact.addEventListener('click', () => {
+    scrollInto('#contact');
 });
 
 
@@ -38,9 +42,19 @@ document.addEventListener('scroll',()=>{
     home.style.opacity=1-window.scrollY/homeHeight;
 });
 
+//Show "arrow-up" button when scrolling down
+const arrowUp=document.querySelector('.arrow-up');
+document.addEventListener('scroll',()=>{
+    if(window.scrollY>(homeHeight/2)){
+        arrowUp.classList.add('visible');
+    } else{
+        arrowUp.classList.remove('visible');
+    }
+});
 
-//methods
-function scrollIntoView(selector){
-    const scrollToContact=document.querySelector(selector);
-    scrollToContact.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-}
+//Handle scrolling when tapping 'arrow-up' button on home
+arrowUp.addEventListener('click',()=>{
+    scrollInto('#home');
+});
+
+
