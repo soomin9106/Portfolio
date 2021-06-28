@@ -24,10 +24,15 @@ navbarMenu.addEventListener('click',(event)=>{
     if(link==null){
         return;
     } 
+    navbarMenu.classList.remove('open');
     scrollInto(link);
 });
 
-
+//show menus when clicking navbar__togle-btn
+const toggleBtn=document.querySelector('.navbar__toggle-btn');
+toggleBtn.addEventListener('click',() => {
+    navbarMenu.classList.toggle('open');
+});
 
 //Handle scrolling when tapping 'Contact Me' button on home
 const homeContact=document.querySelector('.home__contact');
@@ -87,3 +92,5 @@ categoryBtn.addEventListener('click',(event)=>{
         projectContainer.classList.remove('anim-out');
     },300);
 });
+
+
