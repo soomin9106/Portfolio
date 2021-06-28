@@ -28,6 +28,7 @@ navbarMenu.addEventListener('click',(event)=>{
 });
 
 
+
 //Handle scrolling when tapping 'Contact Me' button on home
 const homeContact=document.querySelector('.home__contact');
 homeContact.addEventListener('click', () => {
@@ -66,6 +67,14 @@ categoryBtn.addEventListener('click',(event)=>{
     if(filter === null){
         return ;
     } 
+    
+    //Remove Selection from the previous item and select the new one
+    const active=document.querySelector('.category__btn.selected');
+    active.classList.remove('selected');
+    const targets= 
+    event.target.nodeName === 'BUTTON' ? event.target : event.target.parentNode;
+    targets.classList.add('selected');
+
     projectContainer.classList.add('anim-out');
     setTimeout(()=>{
         projects.forEach((project) => {
