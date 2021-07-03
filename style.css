@@ -131,7 +131,7 @@ p{
 
 .navbar__toggle-btn{
     position: absolute;
-    top: 24px;
+    top: 20px;
     right: 32px;
     font-size: 24px;
     color: var(--color-white);
@@ -171,9 +171,13 @@ p{
     color: var(--color-light-grey);
 }
 
+.home__contact:hover{
+    background-color: var(--color-blue);
+}
+
 /* Section common */
 .section{
-    padding:50px;
+    padding: 50px;
     text-align:center;
     margin: auto;
 }
@@ -302,6 +306,7 @@ p{
     border:1px solid var(--color-dark-grey);
     border-radius: var(--size-border-radius);
     color: var(--color-light-grey);
+    position: relative;
 }
 
 .category__btn.selected,
@@ -325,9 +330,8 @@ p{
     display: inline-block;
     line-height: 20px;
     /* animation transition */
-    position: relative;
-    top:-20px;
-    left:4px;
+    position: absolute;
+    right : 16px;
     opacity: 0;
     transition: all var(--animation-duration) ease-in;
 }
@@ -501,8 +505,20 @@ p{
 
 /* For below 768px screen width */
 @media screen and (max-width:768px){
+    :root{
+        /* Font Size */
+        --font-large: 30px;
+        --font-medium:18px;
+        --font-regular:16px;
+        --font-small:14px;
+        --font-micro:12px;
+    }
+
     .navbar__toggle-btn{
         display:block;
+        top: 16px;
+        right: 16px;
+        font-size: var(--font-medium);
     }
 
     #navbar{
@@ -526,8 +542,13 @@ p{
         display: block;
     }
 
+    .section{
+        padding: 16px;
+        padding-top: 40px;
+    }
     .about__majors{
         flex-direction: column;
+        margin-top: 30px;
     }
 
     .major{
@@ -542,8 +563,33 @@ p{
         flex-grow:1;
     }
 
+    .category__btn{
+        margin : 4px 0;
+    }
+
+    .testimonial{
+        flex-direction: column;
+        align-items: center;
+    }
+
     .testimonial__avatar{
-        width: 80px;
-        height: 80px;
+        width: 120px;
+        height: 120px;
+    }
+
+    .testimonial__avatar:nth-child(even),
+    .testimonial__avatar:nth-child(odd){
+        margin :0;
+        margin: 0 0 10px 0;
+    }
+
+    .testimonial__speech-bubble{
+        order: 1;
+        padding :8px;
+    }
+
+    .arrow-up{
+        right: 16px;
+        bottom: 16px;
     }
 }
