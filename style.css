@@ -119,6 +119,9 @@ p{
     border: 1px solid transparent;
 }
 
+.navbar__menu__item.active{
+    border : 2px solid var(--color-light-grey);
+}
 
 .navbar__menu__item:hover{
     border-color: var(--color-white);

@@ -93,4 +93,43 @@ categoryBtn.addEventListener('click',(event)=>{
     },300);
 });
 
+// 1. 모든 섹션 요소들r과 메뉴 아이템들을 가지고 온다.
+// 2. IntersectionObserver 를 이용해서 모든 섹션들을 관찰한다.
+// 3. 보여지는 섹션에 해당하는 메뉴 아이템을 활성화 시킨다. 
 
+const sectionIds = ['#home','#about','#skills','#work','#testimonials','#contact'];
+const navItems = sectionIds.map(id => document.querySelector(`[data-link="${id}"]`));
+const sections = sectionIds.map(id => document.querySelector(id));
+
+let selectedNavIndex;
+let selectedNavItem = navItems[0];
+function selectNavItem(selected) {
+    selectedNavItem.classList.remove('active');
+    selectedNavItem=selected;
+    selectedNavItem.classList.add('active');
+}
+const options ={
+    root : null,
+    rootMargin: '0px',
+    threshold : 0.3,
+};
+
+const callback = (entries, observer) => {
+    entries.forEach(entry => {
+        if(!entry.isIntersecting && entry.intersectionRatio > 0){
+            const index = sectionIds.indexOf(`#${entry.target.id}`);
+            let selectedIndex;
+            //스크롤링이 아래로 되어서 페이지가 올라가는 경우
+            if(entry.boundingClientRect.y < 0){
+                selectedNavIndex = index + 1;
+            } else { //스크롤링이 위로 올라가서 페이지 내려가는 경우
+                selectedNavIndex =index - 1;
+            } 
+            
+            selectNavItem(navItems[selectedNavIndex]);
+        }
+    });
+};
+
+const observer = new IntersectionObserver(callback,options);
+sections.forEach(section => observer.observe(section));
