@@ -1,9 +1,5 @@
 'use strict'
-//methods
-function scrollInto(selector){
-    const scrollTo=document.querySelector(selector);
-    scrollTo.scrollIntoView({behavior: "smooth"});
-}
+
 
 //Make navbar transparent when it is on the top
 const navbar=document.querySelector('#navbar');
@@ -26,6 +22,7 @@ navbarMenu.addEventListener('click',(event)=>{
     } 
     navbarMenu.classList.remove('open');
     scrollInto(link);
+    //selectNavItem(target);
 });
 
 //show menus when clicking navbar__togle-btn
@@ -103,11 +100,20 @@ const sections = sectionIds.map(id => document.querySelector(id));
 
 let selectedNavIndex;
 let selectedNavItem = navItems[0];
+
 function selectNavItem(selected) {
-    selectedNavItem.classList.remove('active');
+    selectedNavItem.classList.remove('active'); //이전에 활성화 된 id 지워주기 
     selectedNavItem=selected;
-    selectedNavItem.classList.add('active');
+    selectedNavItem.classList.add('active'); //활성화 하기
 }
+
+//methods
+function scrollInto(selector){
+    const scrollTo=document.querySelector(selector);
+    scrollTo.scrollIntoView({behavior: "smooth"});
+    selectNavItem(navItems[sectionIds.indexOf(selector)]);
+}
+
 const options ={
     root : null,
     rootMargin: '0px',
@@ -118,7 +124,6 @@ const callback = (entries, observer) => {
     entries.forEach(entry => {
         if(!entry.isIntersecting && entry.intersectionRatio > 0){
             const index = sectionIds.indexOf(`#${entry.target.id}`);
-            let selectedIndex;
             //스크롤링이 아래로 되어서 페이지가 올라가는 경우
             if(entry.boundingClientRect.y < 0){
                 selectedNavIndex = index + 1;
@@ -133,3 +138,12 @@ const callback = (entries, observer) => {
 
 const observer = new IntersectionObserver(callback,options);
 sections.forEach(section => observer.observe(section));
+
+window.addEventListener('scroll', () => {
+    if(window.scrollY === 0 ){
+        selectedNavIndex=0;
+    } else if(Math.round(window.scrollY+window.innerHeight)>=document.body.clientHeight){
+        selectedNavIndex= navItems.length-1;
+    }
+    selectNavItem(navItems[selectedNavIndex]);
+});
